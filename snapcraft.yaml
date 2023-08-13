@@ -1,0 +1,64 @@
+name: feeling-finder
+grade: stable
+adopt-info: feeling-finder
+base: core22
+confinement: strict
+compression: lzo
+architectures:
+  - build-on: amd64
+    
+apps:
+  feeling-finder:
+    command: feeling_finder
+    extensions: [gnome]
+    common-id: codes.merritt.FeelingFinder
+    desktop: packaging/linux/codes.merritt.FeelingFinder.desktop
+    plugs:
+      - home
+      - network
+      - network-status
+      - network-bind
+      - unity7
+      - screen-inhibit-control
+      
+parts:
+  feeling-finder:
+    plugin: dump
+    source: https://github.com/Merrit/feeling_finder.git
+    parse-info: [packaging/linux/codes.merritt.FeelingFinder.metainfo.xml]
+    override-pull: |
+      craftctl default
+      VER="$(git describe --tags --abbrev=0 | cut -c 2-)"
+      curl -LO https://github.com/Merrit/feeling_finder/releases/download/v${VER}/FeelingFinder-Linux-Portable.tar.gz
+      sed -e 's|Icon=codes.merritt.FeelingFinder|Icon=${SNAP}/assets/icons/codes.merritt.FeelingFinder.svg|' -i packaging/linux/codes.merritt.FeelingFinder.desktop
+    override-build: |
+      craftctl default
+      tar -xvf FeelingFinder-Linux-Portable.tar.gz -C $CRAFT_PART_INSTALL     
+    build-packages:
+      - curl      
+    stage:
+      - data
+      - lib
+      - feeling_finder
+      - assets/icons
+      - packaging/linux
+      
+  deps:
+    after: [feeling-finder]
+    plugin: nil
+    stage-packages:
+      - libkeybinder-3.0-0
+      - libappindicator3-1
+    prime:
+      - usr/lib/$CRAFT_ARCH_TRIPLET/libappindicator*
+      - usr/lib/$CRAFT_ARCH_TRIPLET/libkeybinder*  
+      
+  cleanup:
+    after: [deps]
+    plugin: nil
+    build-snaps: [core22, gtk-common-themes, gnome-42-2204]
+    override-prime: |
+      set -eux
+      for snap in "core22" "gtk-common-themes" "gnome-42-2204"; do
+        cd "/snap/$snap/current" && find . -type f,l -name *.so.* -exec rm -f "$CRAFT_PRIME/{}" \;
+      done 
