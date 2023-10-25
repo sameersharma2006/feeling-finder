@@ -50,7 +50,8 @@ parts:
       - libkeybinder-3.0-0
       - libappindicator3-1
     prime:
-      - usr/lib
+      - usr/lib/*/libappindicator*
+      - usr/lib/*/libkeybinder*
 
   cleanup:
     after: [deps]
