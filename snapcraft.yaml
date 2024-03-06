@@ -1,6 +1,6 @@
 name: feeling-finder
 grade: stable
-version: 1.3.0
+version: 1.4.1
 adopt-info: appinfo
 base: core22
 confinement: strict
