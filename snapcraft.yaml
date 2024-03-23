@@ -12,6 +12,8 @@ apps:
   feeling-finder:
     command: feeling_finder
     extensions: [gnome]
+    environment:
+      DISABLE_WAYLAND: 1
     common-id: codes.merritt.FeelingFinder
     desktop: utils/codes.merritt.FeelingFinder.desktop
     plugs:
