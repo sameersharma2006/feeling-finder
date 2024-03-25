@@ -25,7 +25,8 @@ apps:
 parts:
   feeling-finder:
     plugin: dump
-    source: https://github.com/Merrit/feeling_finder/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/FeelingFinder-Linux-Portable.tar.gz
+    #source: https://github.com/Merrit/feeling_finder/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/FeelingFinder-Linux-Portable.tar.gz
+    source: https://github.com/Merrit/feeling_finder/files/14736521/FeelingFinder-Linux-Portable.tar.gz
     prime:
       - -PORTABLE
       - -README.md
