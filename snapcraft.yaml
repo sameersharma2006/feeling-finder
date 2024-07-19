@@ -2,11 +2,11 @@ name: feeling-finder
 grade: stable
 version: 1.6.2
 adopt-info: appinfo
-base: core22
+base: core24
 confinement: strict
 compression: lzo
-architectures:
-  - build-on: amd64
+platforms:
+  amd64:
 
 apps:
   feeling-finder:
