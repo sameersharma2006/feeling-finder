@@ -14,6 +14,8 @@ apps:
     extensions: [gnome]
     common-id: codes.merritt.FeelingFinder
     desktop: utils/codes.merritt.FeelingFinder.desktop
+    environment:
+      DISABLE_WAYLAND: 1
     plugs:
       - network
       - network-status
