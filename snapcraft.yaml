@@ -1,10 +1,15 @@
 name: feeling-finder
 grade: stable
-version: 1.6.2
+version: 1.7.0
 adopt-info: appinfo
 base: core24
 confinement: strict
 compression: lzo
+license: GPL-3.0-or-later
+issues:
+  - https://github.com/sameersharma2006/feeling-finder/issues
+  - https://bugs.launchpad.net/sundry
+source-code: https://github.com/sameersharma2006/feeling-finder/blob/main/snapcraft.yaml
 platforms:
   amd64:
 
