@@ -13,6 +13,12 @@ source-code: https://github.com/sameersharma2006/feeling-finder/blob/main/snapcr
 platforms:
   amd64:
 
+slots:
+  FeelingFinder:
+    interface: dbus
+    bus: session
+    name: codes.merritt.FeelingFinder
+
 apps:
   feeling-finder:
     command: feeling_finder
